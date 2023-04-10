@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var MAX_SPEED = 80
 @export var FRICTION = 700
 
+# Assign exported var to Vector2 variable for speed
 var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)
 
 @onready var animationPlayer = $AnimationPlayer
