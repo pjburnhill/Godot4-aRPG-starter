@@ -262,5 +262,3 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_1xw2t")
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
-
-[node name="Camera2D" type="Camera2D" parent="."]
