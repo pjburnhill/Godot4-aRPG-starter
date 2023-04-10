@@ -28,9 +28,7 @@ func _physics_process(delta):
 		animationTree.set("parameters/Run/blend_position", input_vector)
 		animationState.travel("Run")
 		velocity = velocity.move_toward(input_vector * VEC_MAX_SPEED, ACCELERATION * delta)
-		#vel += input_vector * ACCELERATION * delta
-		#vel = vel.clamp(MIN_SPEED, MAX_SPEED)
-		print(velocity)
+		#print(velocity)
 	else:
 		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
