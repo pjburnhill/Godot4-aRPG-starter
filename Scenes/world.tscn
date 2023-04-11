@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu376yfjan8xh"]
+[gd_scene load_steps=7 format=3 uid="uid://cu376yfjan8xh"]
 
 [ext_resource type="Texture2D" uid="uid://btteb5kvqha60" path="res://Assets/World/GrassBackground.png" id="1_ji1xj"]
 [ext_resource type="PackedScene" uid="uid://u5tfkss8psja" path="res://Assets/World/bush.tscn" id="2_fed6o"]
 [ext_resource type="PackedScene" uid="uid://rl6p84h7u30v" path="res://Assets/Player/player.tscn" id="2_ih2pe"]
 [ext_resource type="TileSet" uid="uid://bvdjb1742kcma" path="res://Assets/World/dirt_path.tres" id="2_uarky"]
 [ext_resource type="TileSet" uid="uid://r635rq7cwiqb" path="res://Assets/World/cliff.tres" id="3_boyoo"]
+[ext_resource type="Script" path="res://Scenes/FollowCam.gd" id="5_8ehdh"]
 
 [node name="World" type="Node2D"]
 
@@ -32,6 +33,12 @@ y_sort_enabled = true
 
 [node name="Player" parent="Ysort" instance=ExtResource("2_ih2pe")]
 position = Vector2(88, 24)
+
+[node name="FollowCam" type="Camera2D" parent="Ysort/Player" node_paths=PackedStringArray("tilemap")]
+limit_left = 0
+limit_top = 0
+script = ExtResource("5_8ehdh")
+tilemap = NodePath("../../../DirtCliffTileMap")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Ysort"]
 visible = false
