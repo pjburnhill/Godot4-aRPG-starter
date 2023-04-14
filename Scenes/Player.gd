@@ -25,7 +25,6 @@ func _ready():
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-
 func _physics_process(delta):
 	match state:
 		MOVE:
@@ -35,7 +34,7 @@ func _physics_process(delta):
 			pass
 			
 		ATTACK:
-			attack_state(delta)
+			attack_state()
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -59,7 +58,7 @@ func move_state(delta):
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
 
-func attack_state(delta):
+func attack_state():
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 
