@@ -94,7 +94,7 @@ position = Vector2(176, 144)
 position = Vector2(80, 144)
 
 [node name="Grass11" parent="Ysort/Grass" instance=ExtResource("7_l3dwh")]
-position = Vector2(64, 144)
+position = Vector2(72, 144)
 
 [node name="Grass12" parent="Ysort/Grass" instance=ExtResource("7_l3dwh")]
 position = Vector2(16, 144)
