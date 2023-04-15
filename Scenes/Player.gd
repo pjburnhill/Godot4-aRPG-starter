@@ -75,6 +75,7 @@ func attack_state():
 	animationState.travel("Attack")
 
 func roll_animation_finished():
+	velocity = velocity * 0.8
 	state = MOVE
 
 func attack_animation_finished():
