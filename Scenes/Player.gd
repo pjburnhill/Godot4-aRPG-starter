@@ -12,7 +12,7 @@ enum {
 }
 
 var state = MOVE
-var roll_vector = Vector2.LEFT
+var roll_vector = Vector2.DOWN
 
 # Assign exported var to Vector2 variable for speed
 var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)

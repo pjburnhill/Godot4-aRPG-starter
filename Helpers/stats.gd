@@ -1,6 +1,6 @@
 extends Node
 
-@export var max_health:int = 1.0
+@export var max_health:int = 1
 @onready var health = max_health :
 	set(value):
 		health = value

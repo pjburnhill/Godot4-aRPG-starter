@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var stats = $Stats
+const EnemyDeathEffect = preload("res://Assets/Effects/enemy_death_effect.tscn")
 
 func _ready():
 	print('Health_Max: ', stats.max_health)
@@ -16,4 +17,7 @@ func _on_hurtbox_area_entered(area):
 	velocity = area.damage_vector * 120
 
 func _on_stats_no_health():
+	var enemyDeathEffect = EnemyDeathEffect.instantiate()
+	get_parent().add_child(enemyDeathEffect)
+	enemyDeathEffect.global_position = global_position
 	call_deferred('free')
