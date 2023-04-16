@@ -28,5 +28,7 @@ animations = [{
 [node name="HitEffect" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_6gtca")
 animation = &"Animate"
+frame = 1
+frame_progress = 1.0
 offset = Vector2(0, -8)
 script = ExtResource("1_k8t7f")

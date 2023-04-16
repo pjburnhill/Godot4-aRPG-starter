@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var stats = $Stats
 @onready var sprite = $AnimatedSprite
 @onready var playerDetectionZone = $PlayerDetectionZone
+@onready var hurtbox = $Hurtbox
 
 const EnemyDeathEffect = preload("res://Assets/Effects/enemy_death_effect.tscn")
 
@@ -38,7 +39,7 @@ func _physics_process(delta):
 		CHASE:
 			var player = playerDetectionZone.player
 			if player != null:
-				var direction = (player.global_position - global_position).normalized()
+				var direction = global_position.direction_to(player.global_position).normalized()
 				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 			else:
 				state = IDLE
@@ -54,6 +55,8 @@ func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
 	print('Health: ', stats.health)
 	velocity = area.damage_vector * KNOCKBACK_VELOCITY
+	hurtbox.start_invincibility(0.5)
+	hurtbox.create_hit_effect()
 
 func _on_stats_no_health():
 	var enemyDeathEffect = EnemyDeathEffect.instantiate()

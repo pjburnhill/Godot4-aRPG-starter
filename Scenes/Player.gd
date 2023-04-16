@@ -13,6 +13,7 @@ enum {
 
 var state = MOVE
 var roll_vector = Vector2.DOWN
+var stats = PlayerStats
 
 # Assign exported var to Vector2 variable for speed
 var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)
@@ -21,8 +22,10 @@ var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var swordHitbox = $HitboxPivot/SwordHitbox
+@onready var hurtbox = $Hurtbox
 
 func _ready():
+	stats.no_health.connect(player_death)
 	animationTree.active = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -82,3 +85,11 @@ func roll_animation_finished():
 
 func attack_animation_finished():
 	state = MOVE
+
+func player_death():
+	call_deferred('free')
+
+func _on_hurtbox_area_entered(area):
+	stats.health -= 1
+	hurtbox.start_invincibility(0.5)
+	hurtbox.create_hit_effect()

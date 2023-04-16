@@ -8,6 +8,6 @@ func create_grass_effect():
 	grassEffect.global_position = global_position
 	call_deferred('free')
 
-func _on_hurtbox_area_entered(area):
+func _on_hurtbox_area_entered(_area):
 	create_grass_effect()
 	call_deferred('free')
