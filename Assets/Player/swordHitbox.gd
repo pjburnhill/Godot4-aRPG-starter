@@ -1,3 +1,3 @@
-extends Area2D
+extends "res://Helpers/hitbox.gd"
 
-@export var knockback_vector = Vector2.ZERO
+#var knockback_vector = Vector2.ZERO

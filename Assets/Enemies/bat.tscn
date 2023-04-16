@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvrc0r2g18lpc"]
+[gd_scene load_steps=14 format=3 uid="uid://bvrc0r2g18lpc"]
 
 [ext_resource type="Texture2D" uid="uid://dt12oufq2koe1" path="res://Assets/Enemies/Bat.png" id="1_3o86t"]
 [ext_resource type="Script" path="res://Assets/Enemies/bat.gd" id="1_cmkdm"]
 [ext_resource type="Texture2D" uid="uid://uyt4iwr318wr" path="res://Assets/Shadows/SmallShadow.png" id="2_q7b4j"]
 [ext_resource type="PackedScene" uid="uid://cjlw3mupble41" path="res://Helpers/hurtbox.tscn" id="3_i6xw8"]
+[ext_resource type="PackedScene" uid="uid://dwf55x4v6530d" path="res://Helpers/stats.tscn" id="5_s8hvk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jj2lu"]
 atlas = ExtResource("1_3o86t")
@@ -56,15 +57,19 @@ radius = 8.0
 height = 18.0
 
 [node name="Bat" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 16
 collision_mask = 5
 script = ExtResource("1_cmkdm")
+
+[node name="Stats" parent="." instance=ExtResource("5_s8hvk")]
+max_health = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fuf7v")
 animation = &"Fly"
 autoplay = "Fly"
-frame_progress = 0.192867
+frame_progress = 0.105517
 offset = Vector2(0, -12)
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
@@ -81,6 +86,7 @@ collision_mask = 2
 position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_jt0y7")
 
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="Hurtbox"]

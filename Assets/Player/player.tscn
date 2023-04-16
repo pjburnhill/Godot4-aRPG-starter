@@ -1,9 +1,8 @@
-[gd_scene load_steps=54 format=3 uid="uid://rl6p84h7u30v"]
+[gd_scene load_steps=53 format=3 uid="uid://rl6p84h7u30v"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_6clxf"]
 [ext_resource type="Texture2D" uid="uid://dwtppx75y5jrw" path="res://Assets/Player/Player.png" id="2_nhm82"]
 [ext_resource type="PackedScene" uid="uid://cpk47m24s6dx7" path="res://Helpers/hitbox.tscn" id="3_nqjc5"]
-[ext_resource type="Script" path="res://Assets/Player/swordHitbox.gd" id="4_8fqot"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xmbwu"]
 radius = 4.0
@@ -679,7 +678,7 @@ states/Roll/position = Vector2(385.24, 16.9575)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_hsn3t")
 states/Run/position = Vector2(525.5, 99)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_j7i76"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_v4yva"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lhh0c"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_gw3ja"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ekggq"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_cj1pn"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_vnqyx")]
-graph_offset = Vector2(-205.26, -100.042)
+graph_offset = Vector2(-223.92, 12.488)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_1xw2t"]
 
@@ -723,7 +722,6 @@ position = Vector2(0, -4)
 position = Vector2(15, 0)
 collision_layer = 2
 collision_mask = 8
-script = ExtResource("4_8fqot")
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 shape = SubResource("CapsuleShape2D_egv63")
