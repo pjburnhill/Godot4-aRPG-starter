@@ -678,7 +678,7 @@ states/Roll/position = Vector2(385.24, 16.9575)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_hsn3t")
 states/Run/position = Vector2(525.5, 99)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_j7i76"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_v4yva"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lhh0c"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_gw3ja"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ekggq"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_cj1pn"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_vnqyx")]
-graph_offset = Vector2(-223.92, 12.488)
+graph_offset = Vector2(-74.64, 1.0355)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_1xw2t"]
 
