@@ -20,10 +20,6 @@ enum {
 
 var state = CHASE
 
-func _ready():
-	print('Health_Max: ', stats.max_health)
-	print('Health: ', stats.health)
-	
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	move_and_slide()
@@ -53,9 +49,7 @@ func seek_player():
 
 func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
-	print('Health: ', stats.health)
 	velocity = area.damage_vector * KNOCKBACK_VELOCITY
-	hurtbox.start_invincibility(0.5)
 	hurtbox.create_hit_effect()
 
 func _on_stats_no_health():
