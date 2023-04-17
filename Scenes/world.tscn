@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cu376yfjan8xh"]
+[gd_scene load_steps=10 format=3 uid="uid://cu376yfjan8xh"]
 
 [ext_resource type="Texture2D" uid="uid://btteb5kvqha60" path="res://Assets/World/GrassBackground.png" id="1_ji1xj"]
 [ext_resource type="PackedScene" uid="uid://u5tfkss8psja" path="res://Assets/World/bush.tscn" id="2_fed6o"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/FollowCam.gd" id="5_8ehdh"]
 [ext_resource type="PackedScene" uid="uid://cuo3oe8jnfu2e" path="res://Assets/World/grass.tscn" id="7_l3dwh"]
 [ext_resource type="PackedScene" uid="uid://bvrc0r2g18lpc" path="res://Assets/Enemies/bat.tscn" id="8_ammu4"]
+[ext_resource type="PackedScene" uid="uid://c7n62k12gwu26" path="res://Assets/UI/health_ui.tscn" id="9_fxqfd"]
 
 [node name="World" type="Node2D"]
 
@@ -120,3 +121,5 @@ position = Vector2(152, 144)
 
 [node name="Bat4" parent="Ysort/Enemies" instance=ExtResource("8_ammu4")]
 position = Vector2(256, 40)
+
+[node name="HealthUI" parent="." instance=ExtResource("9_fxqfd")]
