@@ -1,10 +1,11 @@
-[gd_scene load_steps=56 format=3 uid="uid://rl6p84h7u30v"]
+[gd_scene load_steps=57 format=3 uid="uid://rl6p84h7u30v"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_6clxf"]
 [ext_resource type="Texture2D" uid="uid://dxmh5itchuqsh" path="res://Assets/Shadows/MediumShadow.png" id="2_hxkg6"]
 [ext_resource type="Texture2D" uid="uid://dwtppx75y5jrw" path="res://Assets/Player/Player.png" id="2_nhm82"]
 [ext_resource type="PackedScene" uid="uid://cpk47m24s6dx7" path="res://Helpers/hitbox.tscn" id="3_nqjc5"]
 [ext_resource type="PackedScene" uid="uid://cjlw3mupble41" path="res://Helpers/hurtbox.tscn" id="4_5w4av"]
+[ext_resource type="AudioStream" uid="uid://cagduqocdvwvh" path="res://Assets/Music and Sounds/Swipe.wav" id="4_61bud"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xmbwu"]
 radius = 4.0
@@ -63,6 +64,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_61bud")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_fcg1p"]
 resource_name = "AttackLeft"
@@ -117,6 +133,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_61bud")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_6drhg"]
 resource_name = "AttackRight"
@@ -171,6 +202,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_61bud")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_2wiek"]
 resource_name = "AttackUp"
@@ -225,6 +271,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_61bud")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_vk5jg"]
 resource_name = "IdleDown"
@@ -747,6 +808,8 @@ shape = SubResource("CapsuleShape2D_rp1wj")
 
 [node name="Timer" parent="Hurtbox" index="1"]
 wait_time = 5.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
