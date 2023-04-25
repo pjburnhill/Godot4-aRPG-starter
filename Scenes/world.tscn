@@ -13,13 +13,13 @@
 
 [node name="World" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
 texture = ExtResource("1_ji1xj")
 offset = Vector2(160, 90)
 region_enabled = true
-region_rect = Rect2(0, 0, 320, 180)
+region_rect = Rect2(-414, -179.5, 917, 497)
 
 [node name="DirtPathTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_uarky")
@@ -37,19 +37,15 @@ y_sort_enabled = true
 
 [node name="Player" parent="Ysort" instance=ExtResource("2_ih2pe")]
 position = Vector2(88, 24)
+collision_mask = 17
 
 [node name="FollowCam" type="Camera2D" parent="Ysort/Player" node_paths=PackedStringArray("tilemap")]
 limit_left = 0
 limit_top = 0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 script = ExtResource("5_8ehdh")
 tilemap = NodePath("../../../DirtCliffTileMap")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Ysort"]
-visible = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ysort/StaticBody2D"]
-polygon = PackedVector2Array(0, 0, 48, 0, 32, 24, 48, 56, 32, 88, 24, 112, 48, 136, 80, 120, 104, 136, 128, 104, 144, 136, 184, 136, 176, 96, 208, 120, 240, 96, 240, 56, 208, 40, 216, 0, 272, 0, 272, 160, 0, 160)
-disabled = true
 
 [node name="Bushes" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
@@ -135,7 +131,9 @@ position = Vector2(238, 159)
 [node name="Tree3" parent="Ysort/Trees" instance=ExtResource("10_0ml5a")]
 position = Vector2(274, 87)
 
-[node name="HealthUI" parent="." instance=ExtResource("9_fxqfd")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("9_fxqfd")]
 offset_left = 5.0
 offset_top = 4.0
 offset_right = 65.0
