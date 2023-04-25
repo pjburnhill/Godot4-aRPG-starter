@@ -25,6 +25,7 @@ var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)
 @onready var hurtbox = $Hurtbox
 
 func _ready():
+	randomize()
 	stats.no_health.connect(player_death)
 	animationTree.active = true
 

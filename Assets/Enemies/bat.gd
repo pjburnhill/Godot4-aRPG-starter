@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var playerDetectionZone = $PlayerDetectionZone
 @onready var hurtbox = $Hurtbox
 @onready var softCollision = $SoftCollisionComponent
+@onready var wanderController = $WanderController
 
 const EnemyDeathEffect = preload("res://Assets/Effects/enemy_death_effect.tscn")
 
@@ -29,27 +30,46 @@ func _physics_process(delta):
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
-			
+			if wanderController.get_time_left() == 0:
+				state = pick_random_state([IDLE, WANDER])
+				update_wonder_state()
+				
 		WANDER:
-			pass
+			seek_player()
+			if wanderController.get_time_left() == 0:
+				update_wonder_state()
+			accelerate_towards_point(wanderController.target_position, delta)
+			if global_position.distance_to(wanderController.target_position) <= MAX_SPEED * (delta * 1.5):
+				update_wonder_state()
 			
 		CHASE:
 			var player = playerDetectionZone.player
 			if player != null:
-				var direction = global_position.direction_to(player.global_position).normalized()
-				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+				accelerate_towards_point(player.global_position, delta)
 			else:
 				state = IDLE
-			sprite.flip_h = velocity.x < 0
 				
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
 	
 	move_and_slide()
 
+func accelerate_towards_point(point, delta):
+	var direction = global_position.direction_to(point)
+	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	sprite.flip_h = velocity.x < 0
+
+func update_wonder_state():
+	state = pick_random_state([IDLE, WANDER])
+	wanderController.start_wander_timer(randi_range(1,3))
+
 func seek_player():
 	if playerDetectionZone.can_see_player():
 		state = CHASE
+
+func pick_random_state(state_list):
+	state_list.shuffle()
+	return state_list.pop_front()
 
 func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
@@ -63,5 +83,5 @@ func _on_stats_no_health():
 	call_deferred('free')
 
 func _ready():
-	randomize()
 	sprite.frame = randf_range(0, sprite.sprite_frames.get_frame_count("Fly")-1)
+	state = pick_random_state([IDLE, WANDER])
