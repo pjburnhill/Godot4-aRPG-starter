@@ -1,17 +1,18 @@
 extends Node
 
-@export var max_health:int = 1:
+@export var max_health:int = 4:
 	set(value):
 		max_health = value
 		health = min(health, max_health)
 		emit_signal("max_health_changed", value)
 		
-var health = 4 :
+@export var health:int = 4:
 	set(value):
-		health = value
-		emit_signal("health_changed", health)
-		if health <= 0:
-			emit_signal("no_health")
+		if value <= max_health:
+			health = value
+			emit_signal("health_changed", health)
+			if health <= 0:
+				emit_signal("no_health")
 	get:
 		return health
 

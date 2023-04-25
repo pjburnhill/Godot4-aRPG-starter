@@ -18,11 +18,11 @@ var invincible = false:
 			print("invincibility_ended")
 
 func start_invincibility(duration):
-	invincible = true
+	self.invincible = true
 	timer.start(duration)
 
 func _on_timer_timeout():
-	invincible = false
+	self.invincible = false
 
 func _on_invincibility_started():
 	print("invincibility_started: setting monitoring to false..")

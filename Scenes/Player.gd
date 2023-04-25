@@ -90,6 +90,7 @@ func player_death():
 	call_deferred('free')
 
 func _on_hurtbox_area_entered(_area):
-	stats.health -= 1
-	hurtbox.start_invincibility(0.5)
-	hurtbox.create_hit_effect()
+	if hurtbox.invincible == false:
+		stats.health -= 1
+		hurtbox.start_invincibility(1)
+		hurtbox.create_hit_effect()

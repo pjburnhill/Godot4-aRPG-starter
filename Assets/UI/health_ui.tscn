@@ -7,14 +7,14 @@
 [node name="HealthUI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 120.0
-offset_bottom = 12.0
+offset_right = 60.0
+offset_bottom = 11.0
 size_flags_horizontal = 3
 script = ExtResource("1_fn1fq")
 
 [node name="HeartUIEmpty" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 104.0
+offset_right = 60.0
 offset_bottom = 11.0
 texture = ExtResource("2_cct3t")
 expand_mode = 1
@@ -22,7 +22,7 @@ stretch_mode = 1
 
 [node name="HeartUIFull" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 105.0
+offset_right = 60.0
 offset_bottom = 11.0
 texture = ExtResource("3_1do0u")
 expand_mode = 1

@@ -57,3 +57,7 @@ func _on_stats_no_health():
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.global_position = global_position
 	call_deferred('free')
+
+func _ready():
+	randomize()
+	sprite.frame = randf_range(0, sprite.sprite_frames.get_frame_count("Fly")-1)
