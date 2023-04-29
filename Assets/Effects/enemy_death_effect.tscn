@@ -85,11 +85,12 @@ animations = [{
 [node name="EnemyDeathEffect" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_hklml")
 animation = &"Animate"
-frame = 2
-frame_progress = 0.881124
+frame = 9
+frame_progress = 1.0
 offset = Vector2(0, -8)
 script = ExtResource("2_0ctcd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_yrgwt")
 autoplay = true
+bus = &"SFX"

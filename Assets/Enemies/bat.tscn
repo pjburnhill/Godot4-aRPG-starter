@@ -1,14 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvrc0r2g18lpc"]
+[gd_scene load_steps=26 format=3 uid="uid://bvrc0r2g18lpc"]
 
 [ext_resource type="Texture2D" uid="uid://dt12oufq2koe1" path="res://Assets/Enemies/Bat.png" id="1_3o86t"]
 [ext_resource type="Script" path="res://Assets/Enemies/bat.gd" id="1_cmkdm"]
 [ext_resource type="Texture2D" uid="uid://uyt4iwr318wr" path="res://Assets/Shadows/SmallShadow.png" id="2_q7b4j"]
+[ext_resource type="Shader" path="res://Shaders/WhiteColor.gdshader" id="3_bjhbi"]
 [ext_resource type="PackedScene" uid="uid://cjlw3mupble41" path="res://Helpers/hurtbox.tscn" id="3_i6xw8"]
 [ext_resource type="PackedScene" uid="uid://dwf55x4v6530d" path="res://Helpers/stats.tscn" id="5_s8hvk"]
 [ext_resource type="PackedScene" uid="uid://bfquvvfhnv3s8" path="res://Helpers/player_detection_zone.tscn" id="6_b2j2v"]
 [ext_resource type="PackedScene" uid="uid://cpk47m24s6dx7" path="res://Helpers/hitbox.tscn" id="7_w1j40"]
 [ext_resource type="PackedScene" uid="uid://cdr7saw6ekvvp" path="res://Helpers/soft_collision_component.tscn" id="8_ljr8v"]
 [ext_resource type="PackedScene" uid="uid://jtr0d43anq6a" path="res://Assets/Enemies/wander_controller.tscn" id="9_hs6kp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vohtl"]
+resource_local_to_scene = true
+shader = ExtResource("3_bjhbi")
+shader_parameter/active = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jj2lu"]
 atlas = ExtResource("1_3o86t")
@@ -69,6 +75,44 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_hryw1"]
 radius = 5.0
 
+[sub_resource type="Animation" id="Animation_i1mc4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_oaokl"]
+resource_name = "Blink"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ca5vh"]
+_data = {
+"Blink": SubResource("Animation_oaokl"),
+"RESET": SubResource("Animation_i1mc4")
+}
+
 [node name="Bat" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 0
@@ -82,6 +126,7 @@ KNOCKBACK_VELOCITY = 120
 max_health = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_vohtl")
 sprite_frames = SubResource("SpriteFrames_fuf7v")
 animation = &"Fly"
 autoplay = "Fly"
@@ -127,8 +172,15 @@ shape = SubResource("CircleShape2D_hryw1")
 
 [node name="WanderController" parent="." instance=ExtResource("9_hs6kp")]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ca5vh")
+}
+
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
 
 [editable path="Hurtbox"]
 [editable path="PlayerDetectionZone"]

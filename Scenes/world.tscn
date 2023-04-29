@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cu376yfjan8xh"]
+[gd_scene load_steps=12 format=3 uid="uid://cu376yfjan8xh"]
 
 [ext_resource type="Texture2D" uid="uid://btteb5kvqha60" path="res://Assets/World/GrassBackground.png" id="1_ji1xj"]
 [ext_resource type="PackedScene" uid="uid://u5tfkss8psja" path="res://Assets/World/bush.tscn" id="2_fed6o"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bvrc0r2g18lpc" path="res://Assets/Enemies/bat.tscn" id="8_ammu4"]
 [ext_resource type="PackedScene" uid="uid://c7n62k12gwu26" path="res://Assets/UI/health_ui.tscn" id="9_fxqfd"]
 [ext_resource type="PackedScene" uid="uid://c0q4t5xgvrm6x" path="res://Assets/World/tree.tscn" id="10_0ml5a"]
+[ext_resource type="AudioStream" uid="uid://cj8cnl81hyfpx" path="res://Assets/Music and Sounds/Music.mp3" id="11_cr4x0"]
 
 [node name="World" type="Node2D"]
 
@@ -142,3 +143,8 @@ offset_left = 5.0
 offset_top = 4.0
 offset_right = 65.0
 offset_bottom = 15.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_cr4x0")
+autoplay = true
+bus = &"Music"

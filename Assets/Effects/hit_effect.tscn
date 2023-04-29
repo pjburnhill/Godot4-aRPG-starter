@@ -36,3 +36,5 @@ script = ExtResource("1_k8t7f")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3gknf")
+autoplay = true
+bus = &"SFX"

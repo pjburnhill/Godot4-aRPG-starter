@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var hurtbox = $Hurtbox
 @onready var softCollision = $SoftCollisionComponent
 @onready var wanderController = $WanderController
+@onready var animationPlayer = $AnimationPlayer
 
 const EnemyDeathEffect = preload("res://Assets/Effects/enemy_death_effect.tscn")
 
@@ -75,6 +76,7 @@ func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
 	velocity = area.damage_vector * KNOCKBACK_VELOCITY
 	hurtbox.create_hit_effect()
+	hurtbox.start_invincibility(0.3)
 
 func _on_stats_no_health():
 	var enemyDeathEffect = EnemyDeathEffect.instantiate()
@@ -85,3 +87,9 @@ func _on_stats_no_health():
 func _ready():
 	sprite.frame = randf_range(0, sprite.sprite_frames.get_frame_count("Fly")-1)
 	state = pick_random_state([IDLE, WANDER])
+
+func _on_hurtbox_invincibility_started():
+	animationPlayer.play("Blink")
+
+func _on_hurtbox_invincibility_ended():
+	animationPlayer.play("RESET")

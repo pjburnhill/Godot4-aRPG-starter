@@ -14,6 +14,7 @@ enum {
 var state = MOVE
 var roll_vector = Vector2.DOWN
 var stats = PlayerStats
+const PlayerHurtSound = preload("res://Assets/Player/player_hurt_sound.tscn");
 
 # Assign exported var to Vector2 variable for speed
 var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)
@@ -23,6 +24,7 @@ var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var swordHitbox = $HitboxPivot/SwordHitbox
 @onready var hurtbox = $Hurtbox
+@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
 	randomize()
@@ -90,8 +92,16 @@ func attack_animation_finished():
 func player_death():
 	call_deferred('free')
 
-func _on_hurtbox_area_entered(_area):
+func _on_hurtbox_area_entered(area):
 	if hurtbox.invincible == false:
-		stats.health -= 1
+		stats.health -= area.damage
 		hurtbox.start_invincibility(1)
 		hurtbox.create_hit_effect()
+		var playerHurtSound = PlayerHurtSound.instantiate()
+		get_tree().current_scene.add_child(playerHurtSound)
+
+func _on_hurtbox_invincibility_started():
+	blinkAnimationPlayer.play("Blink")
+
+func _on_hurtbox_invincibility_ended():
+	blinkAnimationPlayer.play("RESET")
