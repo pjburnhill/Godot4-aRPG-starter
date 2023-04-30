@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var MAX_SPEED = 80
 @export var ROLL_SPEED = 125
 @export var FRICTION = 700
+@export var input_vector = Vector2.ZERO
 
 enum {
 	MOVE,
@@ -52,7 +53,7 @@ func _physics_process(delta):
 
 func move_state(delta):
 	if not is_multiplayer_authority(): return
-	var input_vector = Vector2.ZERO
+	
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
@@ -100,7 +101,6 @@ func attack_animation_finished():
 	state = MOVE
 
 func player_death():
-	if not is_multiplayer_authority(): return
 	call_deferred('free')
 
 func _on_hurtbox_area_entered(area):
