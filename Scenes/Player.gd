@@ -16,9 +16,11 @@ var roll_vector = Vector2.DOWN
 var stats = PlayerStats
 const PlayerHurtSound = preload("res://Assets/Player/player_hurt_sound.tscn");
 
+
 # Assign exported var to Vector2 variable for speed
 var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)
 
+@onready var camera = $FollowCam
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
@@ -26,15 +28,18 @@ var VEC_MAX_SPEED = Vector2(MAX_SPEED, MAX_SPEED)
 @onready var hurtbox = $Hurtbox
 @onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+
 func _ready():
+	if not is_multiplayer_authority(): return
 	randomize()
 	stats.no_health.connect(player_death)
 	animationTree.active = true
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+	camera.make_current()
 
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
 	match state:
 		MOVE:
 			move_state(delta)
@@ -46,6 +51,7 @@ func _physics_process(delta):
 			attack_state()
 
 func move_state(delta):
+	if not is_multiplayer_authority(): return
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -74,25 +80,31 @@ func move_state(delta):
 		state = ATTACK
 
 func roll_state():
+	if not is_multiplayer_authority(): return
 	velocity = roll_vector * ROLL_SPEED
 	animationState.travel("Roll")
 	move_and_slide()
 
 func attack_state():
+	if not is_multiplayer_authority(): return
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 
 func roll_animation_finished():
+	if not is_multiplayer_authority(): return
 	velocity = velocity * 0.8
 	state = MOVE
 
 func attack_animation_finished():
+	if not is_multiplayer_authority(): return
 	state = MOVE
 
 func player_death():
+	if not is_multiplayer_authority(): return
 	call_deferred('free')
 
 func _on_hurtbox_area_entered(area):
+	if not is_multiplayer_authority(): return
 	if hurtbox.invincible == false:
 		stats.health -= area.damage
 		hurtbox.start_invincibility(1)
@@ -101,7 +113,9 @@ func _on_hurtbox_area_entered(area):
 		get_tree().current_scene.add_child(playerHurtSound)
 
 func _on_hurtbox_invincibility_started():
+	if not is_multiplayer_authority(): return
 	blinkAnimationPlayer.play("Blink")
 
 func _on_hurtbox_invincibility_ended():
+	if not is_multiplayer_authority(): return
 	blinkAnimationPlayer.play("RESET")

@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cu376yfjan8xh"]
+[gd_scene load_steps=13 format=3 uid="uid://cu376yfjan8xh"]
 
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_f0y0k"]
 [ext_resource type="Texture2D" uid="uid://btteb5kvqha60" path="res://Assets/World/GrassBackground.png" id="1_ji1xj"]
 [ext_resource type="PackedScene" uid="uid://u5tfkss8psja" path="res://Assets/World/bush.tscn" id="2_fed6o"]
-[ext_resource type="PackedScene" uid="uid://rl6p84h7u30v" path="res://Assets/Player/player.tscn" id="2_ih2pe"]
 [ext_resource type="TileSet" uid="uid://bvdjb1742kcma" path="res://Assets/World/dirt_path.tres" id="2_uarky"]
 [ext_resource type="TileSet" uid="uid://r635rq7cwiqb" path="res://Assets/World/cliff.tres" id="3_boyoo"]
-[ext_resource type="Script" path="res://Scenes/FollowCam.gd" id="5_8ehdh"]
 [ext_resource type="PackedScene" uid="uid://cuo3oe8jnfu2e" path="res://Assets/World/grass.tscn" id="7_l3dwh"]
 [ext_resource type="PackedScene" uid="uid://bvrc0r2g18lpc" path="res://Assets/Enemies/bat.tscn" id="8_ammu4"]
 [ext_resource type="PackedScene" uid="uid://c7n62k12gwu26" path="res://Assets/UI/health_ui.tscn" id="9_fxqfd"]
@@ -22,6 +21,7 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_5w1oh")
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_f0y0k")
 
 [node name="Background" type="Sprite2D" parent="."]
 visible = false
@@ -47,26 +47,10 @@ layer_0/tile_data = PackedInt32Array(458761, 65536, 2, 458762, 131072, 2, 458760
 tile_set = ExtResource("3_boyoo")
 cell_quadrant_size = 32
 format = 2
-layer_0/tile_data = PackedInt32Array(393225, 65536, 1, 327689, 65536, 1, 327688, 65536, 1, 327687, 65536, 1, 262151, 393216, 2, 262150, 0, 0, 327686, 393216, 4, 393222, 0, 1, 393223, 65536, 1, 393224, 65536, 1, 393226, 65536, 1, 327691, 327680, 2, 327692, 131072, 0, 262155, 131072, 0, 262154, 65536, 0, 262153, 327680, 2, 327690, 65536, 1, 393227, 65536, 1, 458763, 327680, 1, 262152, 65536, 1, 458761, 65536, 1, 458760, 65536, 1, 524296, 65536, 1, 524295, 65536, 1, 524294, 393216, 1, 589830, 0, 2, 458759, 65536, 1, 458758, 393216, 2, 196616, 65536, 0, 196615, 0, 0, 327685, 0, 3, 196617, 131072, 0, 458762, 65536, 1, 524298, 65536, 2, 524299, 131072, 2, 524297, 327680, 1, 524293, 65536, 2, 524292, 65536, 2, 458756, 65536, 0, 458757, 65536, 0, 524291, 0, 2, 458755, 393216, 0, 458754, 262144, 3, 393218, 196608, 1, 589831, 65536, 2, 589832, 65536, 2, 589833, 458752, 1, 655369, 262144, 3, 655370, 131072, 3, 393228, 327680, 2, 458765, 65536, 2, 458766, 131072, 2, 393230, 327680, 0, 393231, 65536, 3, 393229, 65536, 0, 458764, 65536, 2, 393232, 458752, 3, 327696, 196608, 0, -65535, 131072, 0, 1, 131072, 2, 0, 524288, 1, 65535, 0, 2, -1, 0, 0, -65536, 65536, 0, -65530, 393216, 0, 6, 0, 2, 7, 65536, 2, 8, 65536, 2, 9, 65536, 2, 10, 131072, 2, -65526, 131072, 0, -65527, 65536, 0, -65528, 65536, 0, -65529, 65536, 0, -65531, 65536, 3, -65532, 0, 3, 65536, 196608, 1, 131072, 458752, 3, 196607, 0, 3, 327680, 0, 3, 327681, 65536, 3, 327682, 458752, 0)
-
-[node name="FollowCam" type="Camera2D" parent="." node_paths=PackedStringArray("tilemap")]
-position = Vector2(88, 24)
-limit_left = 0
-limit_top = 0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-script = ExtResource("5_8ehdh")
-tilemap = NodePath("../DirtCliffTileMap")
+layer_0/tile_data = PackedInt32Array(393225, 65536, 1, 327689, 65536, 1, 327688, 65536, 1, 327687, 65536, 1, 262151, 393216, 2, 262150, 0, 0, 327686, 393216, 4, 393222, 0, 1, 393223, 65536, 1, 393224, 65536, 1, 393226, 65536, 1, 327691, 327680, 2, 327692, 131072, 0, 262155, 131072, 0, 262154, 65536, 0, 262153, 327680, 2, 327690, 65536, 1, 393227, 65536, 1, 458763, 327680, 1, 262152, 65536, 1, 458761, 65536, 1, 458760, 65536, 1, 524296, 65536, 1, 524295, 65536, 1, 524294, 393216, 1, 589830, 0, 2, 458759, 65536, 1, 458758, 393216, 2, 196616, 65536, 0, 196615, 0, 0, 327685, 0, 3, 196617, 131072, 0, 458762, 65536, 1, 524298, 65536, 2, 524299, 131072, 2, 524297, 327680, 1, 524293, 65536, 2, 524292, 65536, 2, 458756, 65536, 0, 458757, 65536, 0, 524291, 0, 2, 458755, 393216, 0, 458754, 262144, 3, 393218, 196608, 1, 589831, 65536, 2, 589832, 65536, 2, 589833, 458752, 1, 655369, 262144, 3, 655370, 131072, 3, 393228, 327680, 2, 458765, 65536, 2, 458766, 131072, 2, 393230, 327680, 0, 393231, 65536, 3, 393229, 65536, 0, 458764, 65536, 2, 393232, 458752, 3, 327696, 196608, 0, -65530, 393216, 0, 6, 0, 2, 7, 65536, 2, 8, 65536, 2, 9, 65536, 2, 10, 131072, 2, -65526, 131072, 0, -65527, 65536, 0, -65528, 65536, 0, -65529, 65536, 0, -65531, 65536, 3, -65532, 0, 3, 131072, 131072, 2, 196607, 0, 2, 327680, 0, 3, 327681, 65536, 3, 327682, 458752, 0, 1, 262144, 0, 2, 131072, 3, 65537, 458752, 3, 65536, 327680, 0, 131071, 393216, 0, 131070, 262144, 3, 65534, 196608, 0)
 
 [node name="Ysort" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="Player" parent="Ysort" instance=ExtResource("2_ih2pe")]
-position = Vector2(88, 24)
-collision_mask = 17
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Ysort/Player"]
-remote_path = NodePath("../../../FollowCam")
 
 [node name="Bushes" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
@@ -82,12 +66,6 @@ position = Vector2(192, 72)
 
 [node name="Grass" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
-
-[node name="Grass" parent="Ysort/Grass" instance=ExtResource("7_l3dwh")]
-position = Vector2(32, 32)
-
-[node name="Grass2" parent="Ysort/Grass" instance=ExtResource("7_l3dwh")]
-position = Vector2(32, 48)
 
 [node name="Grass3" parent="Ysort/Grass" instance=ExtResource("7_l3dwh")]
 position = Vector2(32, 64)
@@ -152,9 +130,10 @@ position = Vector2(238, 159)
 [node name="Tree3" parent="Ysort/Trees" instance=ExtResource("10_0ml5a")]
 position = Vector2(274, 87)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GameUI" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("9_fxqfd")]
+[node name="HealthUI" parent="GameUI" instance=ExtResource("9_fxqfd")]
 offset_left = 5.0
 offset_top = 4.0
 offset_right = 65.0
@@ -162,5 +141,68 @@ offset_bottom = 15.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_cr4x0")
+volume_db = -80.0
 autoplay = true
 bus = &"Music"
+
+[node name="MenuUI" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="MenuUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 74.0
+offset_top = 8.0
+offset_right = -80.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuUI/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuUI/MainMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuUI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 12
+text = "Multiplayer"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Host" type="Button" parent="MenuUI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Host
+"
+
+[node name="Join" type="Button" parent="MenuUI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Join
+"
+
+[node name="AddressEntry" type="LineEdit" parent="MenuUI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Enter Address to Join"
+
+[node name="Quit" type="Button" parent="MenuUI/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Quit"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Assets/Player/player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="MenuUI/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="MenuUI/MainMenu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="MenuUI/MainMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
