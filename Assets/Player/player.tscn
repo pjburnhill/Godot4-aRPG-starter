@@ -1,6 +1,6 @@
-[gd_scene load_steps=65 format=3 uid="uid://rl6p84h7u30v"]
+[gd_scene load_steps=65 format=3 uid="uid://c5be77p0xkwff"]
 
-[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_6clxf"]
+[ext_resource type="Script" path="res://Assets/Player/Player.gd" id="1_4vhou"]
 [ext_resource type="Texture2D" uid="uid://dxmh5itchuqsh" path="res://Assets/Shadows/MediumShadow.png" id="2_hxkg6"]
 [ext_resource type="Texture2D" uid="uid://dwtppx75y5jrw" path="res://Assets/Player/Player.png" id="2_nhm82"]
 [ext_resource type="Shader" path="res://Shaders/WhiteColor.gdshader" id="3_6k1aw"]
@@ -897,7 +897,7 @@ properties/10/sync = true
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 17
-script = ExtResource("1_6clxf")
+script = ExtResource("1_4vhou")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 position = Vector2(0, 2)
